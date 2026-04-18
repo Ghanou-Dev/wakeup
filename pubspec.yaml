@@ -1,0 +1,73 @@
+name: g_lab
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+environment:
+  sdk: ^3.10.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  intl: ^0.20.2
+  flutter_screenutil: ^5.9.3
+  # managment
+  flutter_bloc: ^9.1.1
+  get_it: ^9.2.1
+  equatable: ^2.0.8
+  dartz: ^0.10.1
+  # caching
+  hive_ce: ^2.19.3
+  hive_ce_flutter: ^2.3.4
+  # alarm 
+  alarm: ^5.2.1
+  auto_start_flutter: ^1.0.0
+  permission_handler: ^12.0.1
+  android_intent_plus: ^6.0.0
+  disable_battery_optimization: ^1.1.2
+  # audio 
+  just_audio: ^0.10.5
+  just_audio_background: ^0.0.1-beta.17
+  audio_session: ^0.2.3
+  vibration: ^3.1.8
+  # timezon
+  timezone: ^0.11.0
+  flutter_timezone: ^5.0.2
+  timezone_country: ^1.0.0
+  # other
+  flutter_native_splash: ^2.4.7
+  flutter_animate: ^4.5.2
+  awesome_dialog: ^3.3.0
+
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/sounds/
+    - assets/l10n/
+  
+  fonts:
+    - family: poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          style: normal
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+

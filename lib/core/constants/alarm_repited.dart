@@ -1,0 +1,1 @@
+enum AlarmRepited { once, evryday }

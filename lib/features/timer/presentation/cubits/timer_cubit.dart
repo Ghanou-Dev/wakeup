@@ -44,6 +44,7 @@ class TimerCubit extends Cubit<TimerState> {
 
   void startTimer() {
     totalSeconds = (state.hour * 3600) + (state.minute * 60) + (state.second);
+    if (totalSeconds == 0) return;
     timer?.cancel();
     Duration duration = Duration(
       hours: totalSeconds ~/ 3600,

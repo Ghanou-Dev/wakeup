@@ -63,6 +63,8 @@ class FirstPermissionPage extends StatelessWidget {
                     final String deviceName = await context
                         .read<AlarmPermissionsCubit>()
                         .getDeviceName();
+
+                    /// Check device name ////////////////////////////////////////////////////////////////////////
                     if (deviceName.toLowerCase() == 'xiaomi') {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
@@ -138,6 +140,108 @@ class FirstPermissionPage extends StatelessWidget {
                           ),
                         ),
                       );
+                      //////////////////////////////////////////////////////////////////////////////////
+                    } else if (deviceName.toLowerCase() == 'realme' ||
+                        deviceName.toLowerCase() == 'oppo') {
+                      Navigator.of(
+                        context,
+                      ).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => CustomPermissionPage(
+                            discreption: 'Allow Run in Background Permission ',
+                            subDiscreption:
+                                'Don\'t Let Your Alarms Silent Let App Always run in background',
+                            guids: <PermissionGuid>[
+                              const PermissionGuid(
+                                number: 1,
+                                text1: 'Tap',
+                                text2: 'Battery usage',
+                              ),
+                              const PermissionGuid(
+                                number: 2,
+                                text1: 'and Tap',
+                                text2: 'Allow Background Activity',
+                              ),
+                            ],
+                            onPressed: () async {
+                              await context
+                                  .read<AlarmPermissionsCubit>()
+                                  .openAppInfoScreen();
+                              ////////////////////////////////////////////////////////////////////////////
+                              Navigator.of(
+                                context,
+                              ).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => CustomPermissionPage(
+                                    discreption: 'Allow Notifications ',
+                                    subDiscreption:
+                                        'Allow this permission so that alarms and reminders work properly, even in the background',
+                                    guids: <PermissionGuid>[
+                                      const PermissionGuid(
+                                        number: 1,
+                                        text1: 'Tap',
+                                        text2: 'Allow Permission Button',
+                                      ),
+                                      const PermissionGuid(
+                                        number: 2,
+                                        text1: 'and',
+                                        text2: 'Allow Permission',
+                                      ),
+                                    ],
+                                    onPressed: () async {
+                                      await context
+                                          .read<AlarmPermissionsCubit>()
+                                          .allowNotification();
+                                      //////////////////////////////////////////////
+                                      Navigator.of(
+                                        context,
+                                      ).pushReplacement(
+                                        MaterialPageRoute(
+                                          builder: (context) => CustomPermissionPage(
+                                            discreption:
+                                                'Allow Run in Background Permission ',
+                                            subDiscreption:
+                                                'Don\'t Let Your Alarms Silent Let App Always run in background',
+                                            guids: <PermissionGuid>[
+                                              const PermissionGuid(
+                                                number: 1,
+                                                text1: 'Tap',
+                                                text2:
+                                                    'Allow Permission Button',
+                                              ),
+                                              const PermissionGuid(
+                                                number: 2,
+                                                text1: 'and',
+                                                text2: 'Allow Permission',
+                                              ),
+                                            ],
+                                            onPressed: () async {
+                                              await context
+                                                  .read<AlarmPermissionsCubit>()
+                                                  .openDisibleBatteryOptimizationScreen();
+                                              //////////////////////////////////////////////
+                                              await context
+                                                  .read<AlarmCubit>()
+                                                  .completedFirstLunch();
+
+                                              Navigator.of(
+                                                context,
+                                              ).pushReplacementNamed(
+                                                AppRoutes.home,
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      );
+                      //////////////////////////////////////////////////////////////////////////////////
                     } else {
                       Navigator.of(
                         context,

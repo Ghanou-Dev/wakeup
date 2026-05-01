@@ -10,6 +10,7 @@ import 'package:g_lab/features/alarm/domain/usecases/alarm_permissions_usecases/
 import 'package:g_lab/features/alarm/domain/usecases/alarm_permissions_usecases/get_device_name_usecase.dart';
 import 'package:g_lab/features/alarm/domain/usecases/alarm_permissions_usecases/get_disible_battery_optimization_screen_usecase.dart';
 import 'package:g_lab/features/alarm/domain/usecases/alarm_permissions_usecases/get_display_over_apps_settings_usecase.dart';
+import 'package:permission_handler/permission_handler.dart';
 part 'alarm_permissions_state.dart';
 
 class AlarmPermissionsCubit extends Cubit<AlarmPermissionsState> {
@@ -98,5 +99,11 @@ class AlarmPermissionsCubit extends Cubit<AlarmPermissionsState> {
       },
     );
     return deviceName ?? '';
+  }
+
+  // allow permissions /////////////////////////////////////////////////////////
+  Future<void> allowNotification() async {
+    await Permission.notification.request();
+    print('Allow notification +++++++ ');
   }
 }

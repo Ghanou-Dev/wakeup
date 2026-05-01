@@ -41,7 +41,9 @@ class PermissionsHelper {
   //////////////////////////////////////////////////////////////////////////////
 
   // open Other permission screen in miui [ Method Channel ] ///////////////////
-  static final MethodChannel channel = const MethodChannel('overlay_permission');
+  static final MethodChannel channel = const MethodChannel(
+    'overlay_permission',
+  );
   static Future<void> checkMiuiShowOnLockScreen() async {
     try {
       log('open wake lock screen ');

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:g_lab/core/constants/app_colors.dart';
 import 'package:g_lab/core/constants/app_fonts.dart';
 import 'package:g_lab/features/clock/presentation/cubits/clock_cubit.dart';
+import 'package:timezone/timezone.dart';
 import 'package:timezone_country/timezone_country.dart';
 
 class PickCityTimezonePage extends StatelessWidget {
@@ -51,16 +52,44 @@ class PickCityTimezonePage extends StatelessWidget {
         padding: EdgeInsets.all(10.0.w),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SearchAnchor.bar(
-                barHintText: 'Search Time zone',
-                barTrailing: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.clear)),
-                ],
-                suggestionsBuilder: (context, controller) {
-                  return [];
-                },
+            BlocBuilder<ClockCubit, ClockState>(
+              builder: (context, state) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SearchAnchor.bar(
+                  barHintText: 'Search Time zone',
+                  barTrailing: [
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.clear)),
+                  ],
+                  suggestionsBuilder: (context, controller) {
+                    final List<Location> filtredZones = state.allLocations
+                        .where(
+                          (element) => element.name
+                              .split('/')
+                              .last
+                              .toLowerCase()
+                              .contains(controller.text.toLowerCase()),
+                        )
+                        .toList();
+
+                    return filtredZones.map(
+                      (e) {
+                        return ListTile(
+                          onTap: () {
+                            context.read<ClockCubit>().saveLocation(
+                              location: e,
+                            );
+                            controller.closeView(e.name);
+                            Navigator.of(context).pop();
+                          },
+                          title: Text(e.name.split('/').last),
+                        );
+                      },
+                    );
+                  },
+                  onClose: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                  },
+                ),
               ),
             ),
             SizedBox(

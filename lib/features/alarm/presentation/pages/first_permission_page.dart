@@ -90,6 +90,7 @@ class FirstPermissionPage extends StatelessWidget {
                               ),
                             ],
                             onPressed: () async {
+                              ////////////////////////////////////////////////////////////////////////
                               await context
                                   .read<AlarmPermissionsCubit>()
                                   .openAppInfoScreen();

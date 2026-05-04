@@ -78,9 +78,11 @@ class AlarmPermissionsCubit extends Cubit<AlarmPermissionsState> {
     bool isBatteryOptimizationDisabled =
         await DisableBatteryOptimization.isBatteryOptimizationDisabled ?? false;
     log('Battery optimatization : $isBatteryOptimizationDisabled');
+
     if (!isBatteryOptimizationDisabled) {
       await DisableBatteryOptimization.showDisableBatteryOptimizationSettings();
-      log('Battery optimatization : tttrue');
+      log('Battery optimatization : ttttrue');
+      log('Battery optimatization : $isBatteryOptimizationDisabled');
     } else {
       log('Battery optimatization is Allowed');
     }
